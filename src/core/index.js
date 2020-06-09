@@ -22,7 +22,7 @@ module.exports = async (req, res) => {
       const extName = path.extname(filePath);
       const mimeType = mime.getType(extName);
       const file = fs.createReadStream(filePath);
-      res.setHeader('Content-Type', mimeType);
+      res.setHeader('Content-Type', mimeType + ';charset=utf-8');
       res.setHeader('Content-Length', statSync.size);
       file.pipe(res);
     } else {
