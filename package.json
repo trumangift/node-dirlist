@@ -1,0 +1,25 @@
+{
+  "name": "node-dirlist",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "nodemon src/index.js",
+    "eslint:test": "npx eslint src/*",
+    "eslint:fix": "npx eslint src/* --fix"
+  },
+  "devDependencies": {
+    "chalk": "^4.0.0",
+    "eslint": "^7.2.0",
+    "eslint-config-google": "^0.14.0",
+    "nodemon": "^2.0.4",
+    "pre-commit": "^1.2.2"
+  },
+  "pre-commit": [
+    "eslint:fix",
+    "eslint:test"
+  ],
+  "dependencies": {
+    "handlebars": "^4.7.6"
+  }
+}
