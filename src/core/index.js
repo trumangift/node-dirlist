@@ -20,12 +20,10 @@ module.exports = async (req, res) => {
     if (isFile) {
       // 获取文件Mime类型
       const extName = path.extname(filePath);
-      const fileName = path.basename(filePath);
       const mimeType = mime.getType(extName);
       const file = fs.createReadStream(filePath);
       res.setHeader('Content-Type', mimeType);
       res.setHeader('Content-Length', statSync.size);
-      res.setHeader('Content-Disposition', `attachment; filename=${fileName}`);
       file.pipe(res);
     } else {
       res.setHeader('Content-Type', 'text/html');
