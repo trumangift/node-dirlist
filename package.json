@@ -5,8 +5,8 @@
   "license": "MIT",
   "scripts": {
     "start": "nodemon src/index.js",
-    "eslint:test": "npx eslint src/*",
-    "eslint:fix": "npx eslint src/* --fix"
+    "eslint:test": "npx eslint src/* --no-error-on-unmatched-pattern",
+    "eslint:fix": "npx eslint src/* --fix --no-error-on-unmatched-pattern"
   },
   "devDependencies": {
     "chalk": "^4.0.0",
