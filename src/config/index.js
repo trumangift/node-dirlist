@@ -8,4 +8,5 @@ module.exports = {
   cwd: watchDir || process.cwd(),
   host: '127.0.0.1',
   port: '3000',
+  compress: /.(html|css|png)$/, // 需要压缩的文件类型
 };

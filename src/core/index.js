@@ -3,7 +3,9 @@ const path = require('path');
 const {cwd} = require('../config/index');
 const Handlebars = require('Handlebars');
 const urlencode = require('urlencode');
+const compress = require('./compress');
 const mime = require('mime');
+const config = require('../config/index');
 // read template
 const templateurl = path.join(__dirname, '../template/index.tpl');
 const templateContent = fs.readFileSync(templateurl, 'utf-8');
@@ -21,9 +23,12 @@ module.exports = async (req, res) => {
       // 获取文件Mime类型
       const extName = path.extname(filePath);
       const mimeType = mime.getType(extName);
-      const file = fs.createReadStream(filePath);
+      let file = fs.createReadStream(filePath);
+      if (filePath.match(config.compress)) {
+        file = compress(file, req, res);
+      }
       res.setHeader('Content-Type', mimeType + ';charset=utf-8');
-      res.setHeader('Content-Length', statSync.size);
+      // this is a transform stream
       file.pipe(res);
     } else {
       res.setHeader('Content-Type', 'text/html');
